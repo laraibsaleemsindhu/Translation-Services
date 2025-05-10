@@ -39,3 +39,64 @@ class Translation extends Model
 {
     protected $fillable = ['key', 'content', 'locale'];
 }
+🗃️ Migration
+Run the following command to generate the translation table:
+
+php artisan migrate
+
+Migration file contains:
+
+Schema::create('translations', function (Blueprint $table) {
+    $table->id();
+    $table->string('key');
+    $table->text('content');
+    $table->string('locale');
+    $table->timestamps();
+});
+
+
+🚀 Usage (Tinker Examples)
+Add a New Translation
+
+use App\Models\Translation;
+
+Translation::create([
+    'key' => 'greeting.hello',
+    'content' => 'Hello',
+    'locale' => 'en',
+]);
+
+
+Update a Translation
+
+$translation = Translation::where('key', 'greeting.hello')->where('locale', 'en')->first();
+$translation->update(['content' => 'Hi']);
+
+Retrieve All Translations
+
+\App\Models\Translation::all();
+
+🧪 Testing
+You can test your model using Laravel Tinker:
+
+php artisan tinker
+
+
+And use the above usage examples to create, update, or fetch data.
+
+🧑‍💻 Developer Info
+Name: Laraib Saleem
+
+Email: laraibsaleem623@gmail.com
+
+GitHub: laraibsaleemsindhu
+
+📌 Notes
+Ensure .env file is correctly configured for database access.
+
+This app assumes you're running PHP 8+ and Laravel 8 or higher.
+
+The current branch is main, and the full codebase is available on GitHub.
+
+
+
